@@ -15,4 +15,10 @@ public class EquipoRequestDto {
     @NotNull(message = "El ID del creador es obligatorio")
     private Long creadorId;
 
+    @NotNull(message = "El ID del equipo es obligatorio")
+    private Long equipoId;
+
+    @NotNull(message = "El ID del usuario es obligatorio")
+    private Long usuarioId;
+
 }

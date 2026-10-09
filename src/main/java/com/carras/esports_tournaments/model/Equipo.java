@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -39,22 +40,26 @@ public class Equipo {
     @Column(name = "fecha_creacion", nullable = false, updatable = false)
     private LocalDate fechaCreacion;
 
-    @ManyToMany(mappedBy = "equipo")
+    @ManyToMany
     @JoinTable(
         name = "equipos_usuarios",
-        joinColumns = @JoinColumn(name = "usuario_id"),
-        inverseJoinColumns = @JoinColumn(name = "equipo_id")
+        joinColumns = @JoinColumn(name = "equipo_id"),
+        inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
     @Builder.Default
     private List<Usuario> integrantes = new ArrayList<>();
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "capitan_id")
     private Usuario capitan;
 
     @Column(nullable = false)
     @Builder.Default
     private boolean activo = true;
+
+    @Column
+    @Builder.Default
+    private Integer capacidadMaxima = 20;
 
     public void addIntegrante(Usuario usuario) {
         this.integrantes.add(usuario);

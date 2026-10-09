@@ -54,6 +54,11 @@ public class Torneo {
     @Column(name = "fecha_final", nullable = false)
     private LocalDateTime fechaFinal;
 
+    @Column(name = "jugadores_titulares", nullable = false)
+    private Integer jugadoresTitulares;
+
+    @Column(name = "max_suplentes", nullable = false)
+    private Integer maxSuplentes;
 
     
 }

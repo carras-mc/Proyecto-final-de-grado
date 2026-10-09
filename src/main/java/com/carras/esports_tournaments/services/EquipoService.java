@@ -1,5 +1,6 @@
 package com.carras.esports_tournaments.services;
 
+import com.carras.esports_tournaments.seeder.DataSeeder;
 import java.time.LocalDate;
 
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor 
 public class EquipoService {
+
     private final UsuarioRepository usuarioRepository;
     private final EquipoRepository equipoRepository;
 
@@ -37,5 +39,12 @@ public class EquipoService {
 
 
         return equipoRepository.save(equipo);
+    }
+
+    @Transactional 
+    public void unirseAEquipo(Long equipoId, Long usuarioId) {
+        if (equipoRepository.existsByIdAndIntegrantes_Id(equipoId, usuarioId)) {
+            
+        }
     }
 }
