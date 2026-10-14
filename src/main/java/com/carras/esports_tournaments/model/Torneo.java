@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.carras.esports_tournaments.model.enums.EstadoTorneo;
+import com.carras.esports_tournaments.model.enums.VisibilidadTorneo;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -59,6 +60,11 @@ public class Torneo {
 
     @Column(name = "max_suplentes", nullable = false)
     private Integer maxSuplentes;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "visibilidad", nullable = false)
+    @Builder.Default
+    private VisibilidadTorneo visibilidadTorneo = VisibilidadTorneo.PUBLICO;
 
     
 }

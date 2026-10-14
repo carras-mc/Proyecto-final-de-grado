@@ -1,5 +1,6 @@
 package com.carras.esports_tournaments.model;
 
+import com.carras.esports_tournaments.model.enums.EstadoSolicitudInscripcion;
 import com.carras.esports_tournaments.model.enums.RolJugador;
 
 import jakarta.persistence.Column;
@@ -42,4 +43,9 @@ public class JugadorInscrito {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RolJugador rol;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    @Builder.Default
+    private EstadoSolicitudInscripcion estadoSolicitudInscripcion = EstadoSolicitudInscripcion.PENDIENTE_CONFIRMACION;
 }

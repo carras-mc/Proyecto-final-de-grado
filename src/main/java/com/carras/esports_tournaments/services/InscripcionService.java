@@ -46,7 +46,6 @@ public class InscripcionService {
         Inscripcion inscripcion = Inscripcion.builder()
             .fechaInscripcion(LocalDate.now())
             .estado(EstadoInscripcion.PENDIENTE)
-            .pagado(false)
             .equipo(equipo)
             .torneo(torneo)
             .build();

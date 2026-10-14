@@ -63,8 +63,8 @@ public class Partida {
     @Column(name = "propuesta_local_puntos_visitante")
     private Integer propuestaLocalPuntosVisitante;
 
-    @Column(name = "captura_local_url")
-    private String capturaLocalUrl;
+    /* @Column(name = "captura_local_url")
+    private String capturaLocalUrl; */
 
     // --- Reporte enviado por el Equipo Visitante ---
     @Column(name = "propuesta_visitante_puntos_local")
@@ -73,7 +73,7 @@ public class Partida {
     @Column(name = "propuesta_visitante_puntos_visitante")
     private Integer propuestaVisitantePuntosVisitante;
 
-    @Column(name = "captura_visitante_url")
-    private String capturaVisitanteUrl;
+    /* @Column(name = "captura_visitante_url")
+    private String capturaVisitanteUrl; */
 
 }

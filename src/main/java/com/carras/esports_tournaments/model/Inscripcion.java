@@ -45,13 +45,6 @@ public class Inscripcion {
     @Builder.Default
     private EstadoInscripcion estado = EstadoInscripcion.PENDIENTE;
 
-    /*
-     * @Column(nullable = false)
-     * 
-     * @Builder.Default
-     * private boolean pagado = false;
-     */
-
     @ManyToOne
     @JoinColumn(name = "equipo_id", nullable = false)
     private Equipo equipo;

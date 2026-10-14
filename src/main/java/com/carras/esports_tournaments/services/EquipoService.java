@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.carras.esports_tournaments.exceptions.BusinessException;
 import com.carras.esports_tournaments.model.Equipo;
+import com.carras.esports_tournaments.model.MiembroEquipo;
 import com.carras.esports_tournaments.model.Usuario;
+import com.carras.esports_tournaments.model.enums.RolMiembro;
 import com.carras.esports_tournaments.repositories.EquipoRepository;
 import com.carras.esports_tournaments.repositories.UsuarioRepository;
 
@@ -32,11 +34,9 @@ public class EquipoService {
         Equipo equipo = Equipo.builder()
             .nombre(nombreEquipo)
             .fechaCreacion(LocalDate.now())
-            .capitan(usuario)
             .build();
 
-        equipo.addIntegrante(usuario);
-
+        equipo.addMiembro(usuario, RolMiembro.CREADOR);
 
         return equipoRepository.save(equipo);
     }
