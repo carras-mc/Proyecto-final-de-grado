@@ -1,13 +1,12 @@
 package com.carras.esports_tournaments.services;
 
-import com.carras.esports_tournaments.seeder.DataSeeder;
 import java.time.LocalDate;
 
 import org.springframework.stereotype.Service;
 
+import com.carras.esports_tournaments.dto.EquipoResponseDto;
 import com.carras.esports_tournaments.exceptions.BusinessException;
 import com.carras.esports_tournaments.model.Equipo;
-import com.carras.esports_tournaments.model.MiembroEquipo;
 import com.carras.esports_tournaments.model.Usuario;
 import com.carras.esports_tournaments.model.enums.RolMiembro;
 import com.carras.esports_tournaments.repositories.EquipoRepository;
@@ -24,7 +23,7 @@ public class EquipoService {
     private final EquipoRepository equipoRepository;
 
     @Transactional 
-    public Equipo crearEquipo(String nombreEquipo, Long creadorId) {
+    public EquipoResponseDto crearEquipo(String nombreEquipo, Long creadorId) {
         Usuario usuario = usuarioRepository.findById(creadorId).orElseThrow(() -> new BusinessException("El ID del usuario no existe"));
 
         if (equipoRepository.existsByNombre(nombreEquipo)) {
@@ -38,13 +37,17 @@ public class EquipoService {
 
         equipo.addMiembro(usuario, RolMiembro.CREADOR);
 
-        return equipoRepository.save(equipo);
+        equipo = equipoRepository.save(equipo);
+
+        EquipoResponseDto equipoResponseDto = EquipoResponseDto.builder()
+            .id(equipo.getId())
+            .nombre(nombreEquipo)
+            .fechaCreacion(equipo.getFechaCreacion())
+            .nombreCreador(usuario.getNombre())
+            .build();
+
+        return equipoResponseDto;
     }
 
-    @Transactional 
-    public void unirseAEquipo(Long equipoId, Long usuarioId) {
-        if (equipoRepository.existsByIdAndIntegrantes_Id(equipoId, usuarioId)) {
-            
-        }
-    }
+    
 }

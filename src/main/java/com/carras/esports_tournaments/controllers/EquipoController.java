@@ -27,14 +27,7 @@ public class EquipoController {
     @PostMapping
     public ResponseEntity<EquipoResponseDto> crearEquipo(@Valid @RequestBody EquipoRequestDto requestDto) {
         
-        Equipo equipo = equipoService.crearEquipo(requestDto.getEquipoNombre(), requestDto.getCreadorId());
-
-        EquipoResponseDto equipoResponseDto = EquipoResponseDto.builder()
-            .id(equipo.getId())
-            .nombre(equipo.getNombre())
-            .fechaCreacion(equipo.getFechaCreacion())
-            .nombreCapitan(equipo.getCapitan().getNombre())
-            .build();
+        EquipoResponseDto equipoResponseDto = equipoService.crearEquipo(requestDto.getEquipoNombre(), requestDto.getCreadorId());
         
         return ResponseEntity.status(HttpStatus.CREATED).body(equipoResponseDto);
     }

@@ -12,6 +12,7 @@ public class EquipoRequestDto {
     @NotBlank(message = "El nombre del equipo es obligatorio")
     private String equipoNombre;
 
+    // TODO: Refactorizar para sacar el usuario del token JWT cuando se implemente Spring Security
     @NotNull(message = "El ID del creador es obligatorio")
     private Long creadorId;
 

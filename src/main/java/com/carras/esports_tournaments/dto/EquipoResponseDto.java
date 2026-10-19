@@ -18,5 +18,5 @@ public class EquipoResponseDto {
     private Long id;
     private String nombre;
     private LocalDate fechaCreacion;
-    private String nombreCapitan;
+    private String nombreCreador;
 }

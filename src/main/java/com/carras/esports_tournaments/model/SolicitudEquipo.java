@@ -42,8 +42,7 @@ public class SolicitudEquipo {
     private Usuario usuario;
 
     @Column(name = "fecha_solicitud")
-    @Builder.Default
-    private LocalDateTime fecha = LocalDateTime.now();
+    private LocalDateTime fecha;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
