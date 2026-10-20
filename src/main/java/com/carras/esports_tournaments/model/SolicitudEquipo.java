@@ -41,7 +41,7 @@ public class SolicitudEquipo {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
-    @Column(name = "fecha_solicitud")
+    @Column(name = "fecha_solicitud", nullable = false)
     private LocalDateTime fecha;
 
     @Enumerated(EnumType.STRING)

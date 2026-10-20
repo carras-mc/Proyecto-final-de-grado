@@ -1,5 +1,7 @@
 package com.carras.esports_tournaments.model;
 
+import java.time.LocalDate;
+
 import com.carras.esports_tournaments.model.enums.Rol;
 
 import jakarta.persistence.Column;
@@ -35,9 +37,24 @@ public class Usuario {
     @Column(nullable = false)
     private String nombre;
 
+    @Column(nullable = false, name = "primer_apellido")
+    private String primerApellido;
+
+    @Column(name = "segundo_apellido")
+    private String segundoApellido;
+
+    @Column(name = "fecha_nacimiento")
+    private LocalDate fechaNacimiento;
+
+    //TODO: HACER VERIFICACION EMAIL
     @Column(nullable = false, unique = true)
     private String email;
 
+    //TODO: HACER VERIFICACION NUMERO DE TELEFONO
+    @Column(name = "numero_telefono")
+    private String telefono;
+
+    //TODO: GUARDAR CONTRASEÑA EN HASH
     @Column(nullable = false)
     private String password;
 

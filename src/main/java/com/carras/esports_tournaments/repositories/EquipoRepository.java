@@ -13,7 +13,5 @@ public interface EquipoRepository extends JpaRepository<Equipo, Long> {
     Optional<Equipo> findByNombre(String nombre);
 
     boolean existsByNombre(String nombre);
-    
-    boolean existsByIdAndIntegrantes_Id(Long equipoId, Long usuarioId);
 
 }

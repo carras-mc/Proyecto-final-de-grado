@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 import com.carras.esports_tournaments.model.Equipo;
 import com.carras.esports_tournaments.model.Torneo;
 import com.carras.esports_tournaments.model.Usuario;
+import com.carras.esports_tournaments.model.enums.EstadoTorneo;
 import com.carras.esports_tournaments.model.enums.Rol;
+import com.carras.esports_tournaments.model.enums.VisibilidadTorneo;
 import com.carras.esports_tournaments.repositories.EquipoRepository;
 import com.carras.esports_tournaments.repositories.TorneoRepository;
 import com.carras.esports_tournaments.repositories.UsuarioRepository;
@@ -29,38 +31,41 @@ public class DataSeeder implements CommandLineRunner {
         
         if (torneoRepository.count() == 0) {
 
-            //Torneo torneo = new Torneo(null, "Torneo de verano", EstadoTorneo.INSCRIPCION_ABIERTA, 8, null, "Valorant", null, LocalDateTime.now(), LocalDateTime.of(2026, 9, 3, 19, 0)) ;
-            Torneo torneo = Torneo.builder()
-                .nombre("Torneo de Verano")
-                .capacidadMaxima(8)
-                .juego("Valorant")
-                .fechaInicio(LocalDateTime.now())
-                .fechaFinal(LocalDateTime.of(2026, 9, 3, 19, 0))
+           Torneo torneo = Torneo.builder()
+                .nombre("El Seeder Tournament")
+                .estado(EstadoTorneo.INSCRIPCION_ABIERTA)
+                .capacidadMaxima(6)
+                .juego("CSGO 2")
+                .fechaInicio(LocalDateTime.of(2026, 10, 20, 20, 0))
+                .fechaFinal(LocalDateTime.of(2026, 10, 25, 22, 30))
+                .maxJugadoresTitulares(5)
+                .maxSuplentes(2)
+                .visibilidadTorneo(VisibilidadTorneo.PUBLICO)
                 .build();
-            torneoRepository.save(torneo);
 
-            //Equipo equipo = new Equipo(null, "Legionarios", LocalDate.now(), null, null, true);
+            torneoRepository.save(torneo);
+            
             Equipo equipo = Equipo.builder()
-                .nombre("Legionarios")
+                .nombre("We are the seed")
                 .fechaCreacion(LocalDate.now())
-                .activo(true)
                 .build();
+            
             equipoRepository.save(equipo);
 
-            //Usuario usuario = new Usuario(null, "markiwis", "Marcos", "marcosmunozcarrasco06@gmail.com", equipoRepository.findByNombre("Legionarios").orElse(null), "marquitosElCapitan", Rol.CAPITAN);
             Usuario usuario = Usuario.builder()
-                .username("markiwis")
                 .nombre("Marcos")
+                .primerApellido("Muñoz")
+                .segundoApellido("Carrasco")
+                .fechaNacimiento(LocalDate.of(2006, 7, 5))
                 .email("marcosmunozcarrasco06@gmail.com")
-                .password("marquitosElCapitan")
+                .telefono("640889571")
+                .password("markosSeeder97")
+                .username("Markiwi")
                 .rol(Rol.USER)
                 .build();
+
             usuarioRepository.save(usuario);
-
-            equipo.addIntegrante(usuario);
-            equipo.setCapitan(usuario);
-            equipoRepository.save(equipo);
-
+                    
             System.out.println("¡Datos de prueba inicializados con éxito!");
         }
     }

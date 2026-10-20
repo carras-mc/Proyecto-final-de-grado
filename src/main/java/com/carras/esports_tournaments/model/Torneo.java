@@ -35,6 +35,7 @@ public class Torneo {
     @Builder.Default
     private EstadoTorneo estado = EstadoTorneo.INSCRIPCION_ABIERTA;
 
+    //MAX EQUIPOS
     @Column(name = "capacidad_maxima", nullable = false)
     private Integer capacidadMaxima;
 
@@ -56,7 +57,7 @@ public class Torneo {
     private LocalDateTime fechaFinal;
 
     @Column(name = "jugadores_titulares", nullable = false)
-    private Integer jugadoresTitulares;
+    private Integer maxJugadoresTitulares;
 
     @Column(name = "max_suplentes", nullable = false)
     private Integer maxSuplentes;
