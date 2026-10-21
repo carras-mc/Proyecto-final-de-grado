@@ -12,7 +12,7 @@ import com.carras.esports_tournaments.services.TorneoService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/torneos")
+@RequestMapping("/api/torneos")
 @RequiredArgsConstructor
 public class TorneoController {
     

@@ -14,4 +14,7 @@ public class InscripcionRequestDto {
     @NotNull(message = "El ID del equipo es obligatorio")
     private Long equipoId;
 
+    @NotNull(message = "El ID del usuario es obligatorio")
+    private Long usuarioCreador;
+
 }

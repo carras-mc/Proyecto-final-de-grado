@@ -2,8 +2,6 @@ package com.carras.esports_tournaments.dto;
 
 import java.time.LocalDateTime;
 
-import com.carras.esports_tournaments.model.Equipo;
-import com.carras.esports_tournaments.model.Usuario;
 import com.carras.esports_tournaments.model.enums.EstadoSolicitudEquipo;
 
 import lombok.AllArgsConstructor;

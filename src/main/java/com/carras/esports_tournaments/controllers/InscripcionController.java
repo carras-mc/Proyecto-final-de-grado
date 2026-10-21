@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.carras.esports_tournaments.dto.InscripcionRequestDto;
-import com.carras.esports_tournaments.model.Inscripcion;
+import com.carras.esports_tournaments.dto.InscripcionResponseDto;
 import com.carras.esports_tournaments.services.InscripcionService;
 
 import jakarta.validation.Valid;
@@ -24,11 +24,10 @@ public class InscripcionController {
     private final InscripcionService inscripcionService;
 
     @PostMapping
-    public ResponseEntity<Inscripcion> crearInscripcion(@Valid @RequestBody InscripcionRequestDto requestDto) {
+    public ResponseEntity<InscripcionResponseDto> crearInscripcion(@Valid @RequestBody InscripcionRequestDto requestDto) {
 
-        Inscripcion inscripcion = inscripcionService.inscribirEquipo(requestDto.getTorneoId(), requestDto.getEquipoId());
+        InscripcionResponseDto inscripcionResponseDto = inscripcionService.inscribirEquipo(requestDto.getTorneoId(), requestDto.getEquipoId(), requestDto.getUsuarioCreador());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(inscripcion);
+        return ResponseEntity.status(HttpStatus.CREATED).body(inscripcionResponseDto);
     }
-    
 }

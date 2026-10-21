@@ -1,6 +1,7 @@
 package com.carras.esports_tournaments.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,24 +38,29 @@ public class Inscripcion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fecha_inscripcion", nullable = false, updatable = false)
-    private LocalDate fechaInscripcion;
+    @ManyToOne
+    @JoinColumn(name = "torneo_id", nullable = false)
+    private Torneo torneo;
+
+    @ManyToOne
+    @JoinColumn(name = "equipo_id", nullable = false)
+    private Equipo equipo;
+
+    @ManyToOne 
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuarioAccion;
+
+    @OneToMany(mappedBy = "inscripcion", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<JugadorInscrito> roster = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @Builder.Default
     private EstadoInscripcion estado = EstadoInscripcion.PENDIENTE;
 
-    @ManyToOne
-    @JoinColumn(name = "equipo_id", nullable = false)
-    private Equipo equipo;
-
-    @OneToMany(mappedBy = "inscripcion", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(name = "fecha_inscripcion", nullable = false, updatable = false)
     @Builder.Default
-    private List<JugadorInscrito> roster = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name = "torneo_id", nullable = false)
-    private Torneo torneo;
-
+    private LocalDateTime fechaInscripcion = LocalDateTime.now();
+  
 }
